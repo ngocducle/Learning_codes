@@ -5,7 +5,7 @@ program Euclidean_algorithm
 
 implicit none 
 
-integer :: a, b, a0, b0, ap, bp, x, y, gcd, temp, r, q, n 
+integer :: a, b, a0, b0, ap, bp, x, y, d, temp, r, q, n 
 
 write(*,'(A)') 'Euclidean algorithm: find the greatest common divisor of two integers a and b'
 write(*,'(A)') 'and express the GCD in the form a*x+b*y'
@@ -31,7 +31,7 @@ b0 = abs(b)
 
 ! Apply the Euclidean algorithm
 n = 1 ! the step number 
-gcd = b0 ! Initialize gcd 
+d = b0 ! Initialize gcd 
 
 do while (b0 > 0) 
     ! Calculate q and r  
@@ -42,18 +42,20 @@ do while (b0 > 0)
 
     ! Update a0 and b0  
     a0 = b0 
-    gcd = b0 
     b0 = r
     n = n + 1 
 end do ! WHILE-loop 
 
+! Update d = gcd(a,b)  
+d = a0  
+
 ! Find x and y such that a*x + b*y = d = gcd(a,b) 
 write(*,'(A)') "Find integers x and y such that " 
-write(*,'(I0,A,I0,A,I0)') a, "*x + ", b, "*y = ", gcd 
+write(*,'(I0,A,I0,A,I0)') a, "*x + ", b, "*y = ", d 
 
 ! Find a' and b' such that a'*x+b'*y = d =gcd(a,b)
-ap = a/gcd 
-bp = b/gcd 
+ap = a/d 
+bp = b/d 
 
 x = 0 
 r = mod(1-ap*x,bp) 
@@ -70,7 +72,7 @@ end do ! WHILE-loop
 y = (1-ap*x)/bp 
 
 ! Print the GCD  and x, y
-write(*,'(A,I0,A,I0,A,I0)') "The GCD of ", a, " and ", b, " is ", gcd 
+write(*,'(A,I0,A,I0,A,I0)') "The GCD of ", a, " and ", b, " is ", d 
 write(*,'(A,I0,A,I0)') " x = ", x, ", y = ", y 
 
 end program Euclidean_algorithm 
