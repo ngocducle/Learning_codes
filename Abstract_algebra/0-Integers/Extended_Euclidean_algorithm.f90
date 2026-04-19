@@ -15,7 +15,7 @@ write(*,'(A)') "Extended Euclidean Algorithm: find the greatest common divisor o
 write(*,'(A)') "and express the GCD in the form a*x+b*y" 
 
 ! The values of a and b 
-a = 507885 
+a = 507885  
 b = 60808 
 
 write(*,'(A,I0)') "a = ", a 
@@ -35,7 +35,7 @@ r0 = a0
 r1 = b0 
 
 ! Start the algorithm 
-n = 0 ! The step number  
+n = 1 ! The step number  
 
 do while (r1 /= 0)
     ! Euclidean algorithm 
@@ -43,7 +43,12 @@ do while (r1 /= 0)
     rnew = r0 - q*r1
     xnew = x0 - q*x1 
     ynew = y0 - q*y1 
-    
+
+    ! Print the step 
+    write(*,'(A ,I0,A,I0,A,I0,A,I0,A,I0,A,I0,A,I0,A,I0,A,I0)') &
+    & "Step ",n, ": r0 = ", r0, ", r1 = ",r1, ", q = ",q, &
+    & " x0 = ", x0, ", x1 = ", x1, ", y0 = ", y0, ", y1 = ", y1 
+
     ! Update the values 
     r0 = r1 
     x0 = x1 
@@ -53,22 +58,27 @@ do while (r1 /= 0)
     y1 = ynew 
 
     n = n+1 
-
-    ! Print the step 
-    write(*,'(A ,I0,A,I0,A,I0,A,I0,A,I0,A,I0,A,I0,A,I0,A,I0)') &
-    & "Step ",n, ": r0 = ", r0, ", r1 = ",r1, ", q = ",q, &
-    & " x0 = ", x0, ", x1 = ", x1, ", y0 = ", y0, ", y1 = ", y1 
 end do ! WHILE-loop 
+
+! Print the last step 
+write(*,'(A ,I0,A,I0,A,I0,A,I0,A,I0,A,I0,A,I0,A,I0,A,I0)') &
+& "Step ",n, ": r0 = ", r0, ", r1 = ",r1, ", q = ",q, &
+& " x0 = ", x0, ", x1 = ", x1, ", y0 = ", y0, ", y1 = ", y1 
 
 ! The GCD 
 d = r0 
 x = x0 
 y = y0 
 
+! IMPORTANT: Update the sign of x and y 
+! The algorithm above is applied for positive integers a and b. 
+! Thus we need to update the sign of x and y based on the sign of a and b 
+if (a<0) x = -x 
+if (b<0) y = -y 
+
 ! Print the GCD and x, y
 write(*,'(A,I0,A,I0,A,I0,A,I0,A,I0,A,I0)') "The GCD of ", a, " and ", b, " is ", d, & 
 & " and it is in the form " ,a, "*x + ", b, "*y = " ,d, & 
 & " with x = ", x, ", y = ", y
-
 
 end program Extended_Euclidean_algorithm
