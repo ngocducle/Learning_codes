@@ -3,19 +3,21 @@
 
 program Euclidean_algorithm 
 
+use iso_fortran_env, only: int32
+
 implicit none 
 
-integer :: a, b, a0, b0, ap, bp, x, y, d, temp, r, q, n 
+integer(int32) :: a, b, a0, b0, ap, bp, x, y, d, temp, r, q, n 
 
 write(*,'(A)') 'Euclidean algorithm: find the greatest common divisor of two integers a and b'
 write(*,'(A)') 'and express the GCD in the form a*x+b*y'
 
 ! The values of a and b 
-a = 507885 
-b = 60808 
+a = 507885_int32
+b = 60808_int32
 
-write(*,'(A,I0)') "a = ", a 
-write(*,'(A,I0)') "b = ", b 
+write(*,'(A,I20)') "a = ", a 
+write(*,'(A,I20)') "b = ", b 
 
 ! Check if a != 0 or b != 0
 if (a == 0 .or. b == 0) then

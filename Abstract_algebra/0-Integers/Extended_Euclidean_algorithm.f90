@@ -4,22 +4,23 @@
 
 program Extended_Euclidean_algorithm
 
-implicit none 
+use iso_fortran_env, only: int64
+implicit none
 
-integer :: a,b,a0,b0,x0,y0,x1,y1,r0,r1 
-integer :: xnew,ynew,rnew,q 
-integer :: n  
-integer :: d,x,y 
+integer(int64) :: a,b,a0,b0,x0,y0,x1,y1,r0,r1
+integer(int64) :: xnew,ynew,rnew,q
+integer(int64) :: n
+integer(int64) :: d,x,y
 
 write(*,'(A)') "Extended Euclidean Algorithm: find the greatest common divisor of two integers a and b" 
 write(*,'(A)') "and express the GCD in the form a*x+b*y" 
 
 ! The values of a and b 
-a = 507885  
-b = 60808 
+a = 6003722857_int64
+b = 7769523973_int64
 
-write(*,'(A,I0)') "a = ", a 
-write(*,'(A,I0)') "b = ", b 
+write(*,'(A,I20)') "a = ", a
+write(*,'(A,I20)') "b = ", b
 
 ! Make a0 and b0 positive
 a0 = abs(a)
